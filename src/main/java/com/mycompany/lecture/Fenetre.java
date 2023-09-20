@@ -1,64 +1,77 @@
 package com.mycompany.lecture;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class Fenetre extends JFrame 
+public class Fenetre extends JFrame
 {
-    protected String mot; // mot à lire
-    protected int index = 1;
-    private JFrame frame = new JFrame("Lecture"); 
-    private JPanel panel = new JPanel();
-    private JPanel panel2 = new JPanel();
-    private JLabel texte = new JLabel(mot);
+    private String NomImage; // Nom de l'image à lire
+    private int index; // correspond au numéro du dessin
+    private JPanel panelGauche = new JPanel();
+    private JPanel panelDroit = new JPanel();
+    private JLabel texte = new JLabel();
     private JButton boutonReculer = new JButton(new ImageIcon("images/back.png"));  
     private JButton boutonAvancer = new JButton(new ImageIcon("images/forward.png"));  
     
-    public Fenetre(String mot){
-        this.mot = mot;
-        texte.setText(mot);
+    public Fenetre(String NomImage, int index){
+        this.NomImage = NomImage;
+        this.index = index;
+        texte.setText(NomImage);
         texte.setFont(new Font("Serif", Font.BOLD, 20));
         // positionnement avec la méthode BorderLayout
-        this.frame.add(panel, BorderLayout.NORTH);
-        this.frame.add(panel2, BorderLayout.CENTER);
+        this.add(panelGauche, BorderLayout.NORTH);
+        this.add(panelDroit, BorderLayout.CENTER);
         // positionnement des trois éléments avec la méthode FlowLayout
-        panel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-        panel.add(texte);
-        panel.add(boutonReculer);
-        panel.add(boutonAvancer);
-        //panel.setBackground(Color.GREEN);
-        //panel2.setBackground(Color.ORANGE);
-        //frame.pack();
+        panelGauche.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        panelGauche.add(texte);
+        panelGauche.add(boutonReculer);
+        panelGauche.add(boutonAvancer);
         actionsBoutons();
-        this.frame.setSize(300, 300);
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setVisible(true);
+        // réglage de la Frame
+        this.setSize(300, 300);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
     }
     
     private void actionsBoutons(){
         //boutonReculer
         boutonReculer.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent event) {
                 // gestion de l'index
+                System.out.println("Reculer");
                 index-=1;
                 if (index == 0){
-                    index =1;
+                    index = 1;
                 }
+                 // lance la fabrication de l'objet
                 System.out.println(index);
+                FabriqueDessin fabriqueDessin = new FabriqueDessin(index, panelDroit, NomImage);
+                fabriqueDessin.getDessin();
+                texte.setText(fabriqueDessin.getNomImage());
             }
         });
         boutonAvancer.addActionListener(new ActionListener() {
-            // gestion de l'index
             @Override
             public void actionPerformed(ActionEvent event) {
+                // gestion de l'index
                 index+=1;
                 if (index == 4){
                     index =3;
                 }
-                System.out.println(index);
+                // lance la fabrication de l'objet 
+                FabriqueDessin fabriqueDessin = new FabriqueDessin(index, panelDroit, NomImage);
+                fabriqueDessin.getDessin();
+                texte.setText(fabriqueDessin.getNomImage());
             }
         });
         
