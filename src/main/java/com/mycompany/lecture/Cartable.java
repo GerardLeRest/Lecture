@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 
 public class Cartable implements Dessin {
     
-    private final String nomDeLImage ="CARTABL1";
+    private final String nomDeLImage ="CARTABLE";
     private JPanel panelDroit;
     
     public Cartable (JPanel panelDroit){
@@ -19,7 +19,7 @@ public class Cartable implements Dessin {
     public String getNomImage() {
         return nomDeLImage;
     }
-
+    
     @Override
     public void dessin() {
         Graphics2D graph = (Graphics2D) panelDroit.getGraphics();
