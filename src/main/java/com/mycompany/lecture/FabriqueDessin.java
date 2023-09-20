@@ -6,12 +6,12 @@ import java.awt.Color;
 
 public class FabriqueDessin{
    private int index;
-   private JPanel panelDroit;
+   private JPanel panelCentre;
    private String NomImage;
 
-    public FabriqueDessin(int index, JPanel panelDroit, String NomImage) {
+    public FabriqueDessin(int index, JPanel panelCentre, String NomImage) {
         this.index = index;
-        this.panelDroit = panelDroit;
+        this.panelCentre = panelCentre;
         this.NomImage = NomImage;
     };
       
@@ -22,28 +22,33 @@ public class FabriqueDessin{
             case 0 -> effacerPanelDroit();
             case 1 -> { 
                 effacerPanelDroit();
-                Dessin cartable = new Cartable(panelDroit);    
+                Dessin cartable = new Cartable(panelCentre);    
                 NomImage = cartable.getNomImage();
             }
             case 2 -> { 
-                Dessin cartable = new Cartable(panelDroit);
+                Dessin cartable = new Cartable(panelCentre);
                 NomImage = cartable.getNomImage();
                 cartable.dessin();
             }
             case 3 -> {
                 effacerPanelDroit();
-                Dessin livre = new Livre(panelDroit);
+                Dessin livre = new Livre(panelCentre);
                 NomImage = livre.getNomImage();
             }
             case 4 -> {
-                Dessin livre = new Livre(panelDroit);
+                Dessin livre = new Livre(panelCentre);
                 NomImage = livre.getNomImage();
                 livre.dessin();
             }
-            case 5 -> effacerPanelDroit();
+            case 5 -> {
+                effacerPanelDroit();
+                Dessin crayon = new Crayon(panelCentre);
+                NomImage = crayon.getNomImage();
+            }
             case 6 ->{
-                //crayonnjaune
-                System.out.println("case 3");
+                Dessin crayon = new Crayon(panelCentre);
+                NomImage = crayon.getNomImage();
+                crayon.dessin();
             }
         }
     }
@@ -53,7 +58,7 @@ public class FabriqueDessin{
     }
 
     public void effacerPanelDroit(){
-        Graphics2D graph = (Graphics2D) panelDroit.getGraphics();
+        Graphics2D graph = (Graphics2D) panelCentre.getGraphics();
         graph.setColor(Color.WHITE);
         graph.fillRect(0, 0, 300, 300); // cadre extérieur
     }

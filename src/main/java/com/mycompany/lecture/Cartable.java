@@ -9,10 +9,10 @@ import java.awt.Graphics2D;
 public class Cartable implements Dessin {
     
     private final String nomDeLImage ="CARTABLE";
-    private JPanel panelDroit;
+    private JPanel panelCentre;
     
-    public Cartable (JPanel panelDroit){
-        this.panelDroit = panelDroit;
+    public Cartable (JPanel panelCentre){
+        this.panelCentre = panelCentre;
     }
              
     @Override
@@ -22,7 +22,7 @@ public class Cartable implements Dessin {
     
     @Override
     public void dessin() {
-        Graphics2D graph = (Graphics2D) panelDroit.getGraphics();
+        Graphics2D graph = (Graphics2D) panelCentre.getGraphics();
         graph.setColor(Color.BLUE);
         graph.setStroke(new BasicStroke(4)); // epaisseur du trait en pixels
         graph.drawRect(10, 20, 280, 160); // cadre extérieur
