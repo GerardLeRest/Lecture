@@ -1,8 +1,8 @@
-
 com/mycompany/lecture/Dessin.class
 com/mycompany/lecture/Fenetre.class
 com/mycompany/lecture/Cartable.class
 com/mycompany/lecture/FabriqueDessin.class
 com/mycompany/lecture/Application.class
 com/mycompany/lecture/Livre.class
+com/mycompany/lecture/CouleurObjet.class
 com/mycompany/lecture/Crayon.class
