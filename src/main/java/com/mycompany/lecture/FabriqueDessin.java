@@ -9,60 +9,59 @@ public class FabriqueDessin{
    private JPanel panelCentre;
    private String NomImage;
    private String couleur;
-   private Graphics2D graph;
 
-    public FabriqueDessin(int index, JPanel panelCentre, String couleur) {
+    public FabriqueDessin(int index, JPanel panelCentre, String NomImage, String couleur) {
         this.index = index;
         this.panelCentre = panelCentre;
+        this.NomImage = NomImage;
         this.couleur = couleur;
-        System.out.println(panelCentre);
     }
       
     public void getDessin(){
-         // dessine l'objet sélectionné dans le panel haut
+         // dessine l'objet sélectionné dans le panel de droite
+        System.out.println("index: " + index);
         switch (index) {
             case 0 -> effacerPanelDroit();
             case 1 -> { 
                 effacerPanelDroit();
-                Dessin cartable = new Cartable( couleur, panelCentre);    
+                Dessin cartable = new Cartable(panelCentre, couleur);    
                 NomImage = cartable.getNomImage();
             }
             case 2 -> { 
-                Dessin cartable = new Cartable(couleur, panelCentre);
+                Dessin cartable = new Cartable(panelCentre, couleur);
                 NomImage = cartable.getNomImage();
                 cartable.dessin();
             }
             case 3 -> {
                 effacerPanelDroit();
-                Dessin livre = new Livre(couleur, panelCentre);
+                Dessin livre = new Livre(panelCentre, couleur);
                 NomImage = livre.getNomImage();
             }
             case 4 -> {
-                System.out.println("Fabrique.java");
-                Dessin livre = new Livre(couleur, panelCentre);
+                Dessin livre = new Livre(panelCentre, couleur);
                 NomImage = livre.getNomImage();
                 livre.dessin();
             }
             case 5 -> {
                 effacerPanelDroit();
-                Dessin crayon = new Crayon(couleur, panelCentre);
+                Dessin crayon = new Crayon(panelCentre, couleur);
                 NomImage = crayon.getNomImage();
             }
             case 6 ->{
-                Dessin crayon = new Crayon(couleur, panelCentre);
+                Dessin crayon = new Crayon(panelCentre, couleur);
                 NomImage = crayon.getNomImage();
                 crayon.dessin();
             }
         }
     }
- 
+        
+    public String getNomImage(){
+        return NomImage;
+    }
+
     public void effacerPanelDroit(){
         Graphics2D graph = (Graphics2D) panelCentre.getGraphics();
         graph.setColor(Color.WHITE);
-        graph.fillRect(10, 0, 300, 290); // cadre extérieur
-    }
-    
-    public String getNomImage(){
-        return NomImage;
+        graph.fillRect(0, 0, 300, 300); // cadre extérieur
     }
 }
