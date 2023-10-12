@@ -12,13 +12,11 @@ public class CouleurDessin {
     }
     
      public Color couleurSelectionnee(){
-         System.out.println("couleur: " + couleur);
         switch (couleur){
             case "Rouge" ->   couleurTrait = Color.RED;
-            case "Vert" ->   couleurTrait = Color.GREEN;
+            case "Orange" ->   couleurTrait = Color.ORANGE;
             case "Bleu" -> couleurTrait = Color.BLUE;
         }
-         System.out.println("couleur:" + couleurTrait);
         return couleurTrait;
     }   
 }

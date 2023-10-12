@@ -4,11 +4,12 @@ import javax.swing.JPanel;
 import java.awt.Graphics2D;
 import java.awt.Color;
 
-public class FabriqueDessin{
-   private int index;
-   private JPanel panelCentre;
-   private String NomImage;
-   private String couleur;
+public class FabriqueDessin {
+
+    private int index;
+    private JPanel panelCentre;
+    private String NomImage;
+    private String couleur;
 
     public FabriqueDessin(int index, JPanel panelCentre, String NomImage, String couleur) {
         this.index = index;
@@ -16,18 +17,18 @@ public class FabriqueDessin{
         this.NomImage = NomImage;
         this.couleur = couleur;
     }
-      
-    public void getDessin(){
-         // dessine l'objet sélectionné dans le panel de droite
-        System.out.println("index: " + index);
+
+    public void getDessin() {
+        // dessine l'objet sélectionné dans le panel de droite
         switch (index) {
-            case 0 -> effacerPanelDroit();
-            case 1 -> { 
+            case 0 ->
                 effacerPanelDroit();
-                Dessin cartable = new Cartable(panelCentre, couleur);    
+            case 1 -> {
+                effacerPanelDroit();
+                Dessin cartable = new Cartable(panelCentre, couleur);
                 NomImage = cartable.getNomImage();
             }
-            case 2 -> { 
+            case 2 -> {
                 Dessin cartable = new Cartable(panelCentre, couleur);
                 NomImage = cartable.getNomImage();
                 cartable.dessin();
@@ -47,21 +48,21 @@ public class FabriqueDessin{
                 Dessin crayon = new Crayon(panelCentre, couleur);
                 NomImage = crayon.getNomImage();
             }
-            case 6 ->{
+            case 6 -> {
                 Dessin crayon = new Crayon(panelCentre, couleur);
                 NomImage = crayon.getNomImage();
                 crayon.dessin();
             }
         }
     }
-        
-    public String getNomImage(){
+
+    public String getNomImage() {
         return NomImage;
     }
 
-    public void effacerPanelDroit(){
+    public void effacerPanelDroit() {
         Graphics2D graph = (Graphics2D) panelCentre.getGraphics();
         graph.setColor(Color.WHITE);
-        graph.fillRect(0, 0, 300, 300); // cadre extérieur
+        graph.fillRect(55,0, 300, 300); // cadre extérieur
     }
 }

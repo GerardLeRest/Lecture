@@ -36,7 +36,7 @@ public class Fenetre extends JFrame
         this.couleur = couleur;
         // Créer les boutons radio
         bRadio1 = new JRadioButton("R");
-        bRadio2 = new JRadioButton("V");
+        bRadio2 = new JRadioButton("O");
         bRadio3 = new JRadioButton("B");
         //label haut
         labelHaut.setText(NomImage);
@@ -67,15 +67,15 @@ public class Fenetre extends JFrame
         panelhaut.add(labelHaut);
         actionsBoutons();
         // réglage de la Frame
-        this.setSize(300, 300);
+        this.setSize(440, 320);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false); 
         this.setVisible(true);
     }
     
     private void actionsBoutons(){
         
         boutonReculer.addActionListener((ActionEvent event) -> {
-            System.out.println("Reculer");
             index -= 1;
             if (index == 0){
                 index = 1;
@@ -87,7 +87,6 @@ public class Fenetre extends JFrame
         });
         
         boutonAvancer.addActionListener((ActionEvent event) -> {
-            System.out.println("Reculer");
             index += 1;
             if (index == 7){
                 index =1;
@@ -97,21 +96,18 @@ public class Fenetre extends JFrame
         
         bRadio1.addActionListener((ActionEvent event) -> {
             couleur="Rouge";
-            System.out.println(couleur);
             labelHaut.setForeground(Color.RED);
             dessiner();
         });
         
         bRadio2.addActionListener((ActionEvent event) -> {
-            couleur="Vert";
-            System.out.println(couleur);
-            labelHaut.setForeground(Color.GREEN);
+            couleur="Orange";
+            labelHaut.setForeground(Color.ORANGE);
             dessiner();
         });
         
         bRadio3.addActionListener((ActionEvent event) -> {  
             couleur="Bleu";
-            System.out.println(couleur);
             labelHaut.setForeground(Color.BLUE);
             dessiner();
         });
@@ -120,7 +116,6 @@ public class Fenetre extends JFrame
     
     private void dessiner(){
         // lance la fabrication de l'objet
-            System.out.println(index);
             FabriqueDessin fabriqueDessin = new FabriqueDessin(index, panelCentre, NomImage, couleur);
             fabriqueDessin.getDessin();
             // mise à jour des labels

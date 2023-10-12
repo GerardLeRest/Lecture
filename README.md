@@ -5,3 +5,4 @@
 4ème version: ajout du crayon
 5ème version: ajout d'un menu déroulant
 6ème version: remplacement du menu déroulant par des boutons radios.
+7ème version: arrangements graphiques

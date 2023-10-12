@@ -1,7 +1,6 @@
 package com.mycompany.lecture;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import javax.swing.JPanel;
 import java.awt.Graphics2D;
 
@@ -28,8 +27,8 @@ public class Crayon implements Dessin {
         CouleurDessin couleurdessin = new CouleurDessin(couleur);
         graph.setColor(couleurdessin.couleurSelectionnee());
         graph.setStroke(new BasicStroke(4)); // epaisseur du trait en pixels
-        graph.drawRect(120, 20, 40, 100);
-        graph.drawLine(120,120,140,140);
-        graph.drawLine(160,120,140,140);
+        graph.drawRect(175, 20, 40, 100);
+        graph.drawLine(175,120,195,140);
+        graph.drawLine(215,120,195,140);
     }
 }
