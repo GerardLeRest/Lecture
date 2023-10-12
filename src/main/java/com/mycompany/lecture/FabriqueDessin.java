@@ -9,13 +9,16 @@ public class FabriqueDessin {
     private int index;
     private JPanel panelCentre;
     private String NomImage;
-    private String couleur;
+    private int R, V, B;
 
-    public FabriqueDessin(int index, JPanel panelCentre, String NomImage, String couleur) {
+    public FabriqueDessin(int index, JPanel panelCentre, String NomImage, int R, int V, int B) {
         this.index = index;
         this.panelCentre = panelCentre;
         this.NomImage = NomImage;
-        this.couleur = couleur;
+        this.R = R;
+        this.V = V;
+        this.B = B;
+                
     }
 
     public void getDessin() {
@@ -25,31 +28,31 @@ public class FabriqueDessin {
                 effacerPanelDroit();
             case 1 -> {
                 effacerPanelDroit();
-                Dessin cartable = new Cartable(panelCentre, couleur);
+                Dessin cartable = new Cartable(panelCentre, R, V, B);
                 NomImage = cartable.getNomImage();
             }
             case 2 -> {
-                Dessin cartable = new Cartable(panelCentre, couleur);
+                Dessin cartable = new Cartable(panelCentre, R, V, B);
                 NomImage = cartable.getNomImage();
                 cartable.dessin();
             }
             case 3 -> {
                 effacerPanelDroit();
-                Dessin livre = new Livre(panelCentre, couleur);
+                Dessin livre = new Livre(panelCentre, R, V, B);
                 NomImage = livre.getNomImage();
             }
             case 4 -> {
-                Dessin livre = new Livre(panelCentre, couleur);
+                Dessin livre = new Livre(panelCentre, R, V, B);
                 NomImage = livre.getNomImage();
                 livre.dessin();
             }
             case 5 -> {
                 effacerPanelDroit();
-                Dessin crayon = new Crayon(panelCentre, couleur);
+                Dessin crayon = new Crayon(panelCentre, R, V, B);
                 NomImage = crayon.getNomImage();
             }
             case 6 -> {
-                Dessin crayon = new Crayon(panelCentre, couleur);
+                Dessin crayon = new Crayon(panelCentre, R, V, B);
                 NomImage = crayon.getNomImage();
                 crayon.dessin();
             }

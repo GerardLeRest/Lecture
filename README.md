@@ -6,3 +6,4 @@
 5ème version: ajout d'un menu déroulant
 6ème version: remplacement du menu déroulant par des boutons radios.
 7ème version: arrangements graphiques
+8ème version: remplacement des boutons radios par des cases à cocher

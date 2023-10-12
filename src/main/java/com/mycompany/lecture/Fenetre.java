@@ -5,21 +5,24 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 public class Fenetre extends JFrame
 {
     private String NomImage; // Nom de l'image à ;
     private int index; // correspond au numéro du dessin
-    private String couleur;
-    private JRadioButton bRadio1, bRadio2, bRadio3; // boutons radios
+    // case à cocher
+    private JCheckBox checkboxR = new JCheckBox("R"); // case à cocher
+    private JCheckBox checkboxV = new JCheckBox("V"); // case à cocher
+    private JCheckBox checkboxB = new JCheckBox("B"); // case à cocher
+    // valeur RVB (0 ou 255)déterminée par les cases à cocher
+    private int R, V, B;
     private ButtonGroup groupeBoutons = new ButtonGroup();         
     private JPanel panelhaut = new JPanel();
     private JPanel panelCentre = new JPanel();	
@@ -28,20 +31,15 @@ public class Fenetre extends JFrame
     private JButton boutonReculer = new JButton(new ImageIcon("images/back.png"));  
     private JButton boutonAvancer = new JButton(new ImageIcon("images/forward.png"));  
    
-    public Fenetre(String NomImage, int index, String couleur){
+    public Fenetre(String NomImage, int index){
         
         // label haut
         this.NomImage = NomImage;
         this.index = index;
-        this.couleur = couleur;
-        // Créer les boutons radio
-        bRadio1 = new JRadioButton("R");
-        bRadio2 = new JRadioButton("O");
-        bRadio3 = new JRadioButton("B");
         //label haut
         labelHaut.setText(NomImage);
         labelHaut.setFont(new Font("Serif", Font.BOLD, 20));
-        labelHaut.setForeground(Color.RED);
+        //labelHaut.setForeground(Color.RED);
         // label bas
         labelBas.setText ("Image " + index);
         // Mettre une bordure au label labelBas
@@ -52,14 +50,11 @@ public class Fenetre extends JFrame
         this.add(labelBas, BorderLayout.SOUTH); 
         // positionnement des éléments du hazut avec la méthode FlowLayout
         panelhaut.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-        // boutons radios
-        panelhaut.add(bRadio1);
-        panelhaut.add(bRadio2);
-        panelhaut.add(bRadio3);
-        // grouper les boutons
-        groupeBoutons.add(bRadio1);
-        groupeBoutons.add(bRadio2);
-        groupeBoutons.add(bRadio3);
+        // ajouter les boutons radios au panelhaut
+        panelhaut.add(checkboxR);
+        panelhaut.add(checkboxV);
+        panelhaut.add(checkboxB);
+        R = V = B = 0;
         // boutons reculer et avancer
         panelhaut.add(boutonReculer);
         // le mot à lire
@@ -94,21 +89,36 @@ public class Fenetre extends JFrame
             dessiner();
         });
         
-        bRadio1.addActionListener((ActionEvent event) -> {
-            couleur="Rouge";
-            labelHaut.setForeground(Color.RED);
+        checkboxR.addActionListener((ActionEvent event) -> {
+            boolean state = checkboxR.isSelected();
+            if (state) {
+               R = 255;
+            } 
+            else {
+               R = 0;
+            }
             dessiner();
         });
         
-        bRadio2.addActionListener((ActionEvent event) -> {
-            couleur="Orange";
-            labelHaut.setForeground(Color.ORANGE);
+        checkboxV.addActionListener((ActionEvent event) -> {
+            boolean state = checkboxV.isSelected();
+            if (state) {
+               V = 255;
+            }
+            else {
+               V = 0;
+            }
             dessiner();
         });
         
-        bRadio3.addActionListener((ActionEvent event) -> {  
-            couleur="Bleu";
-            labelHaut.setForeground(Color.BLUE);
+        checkboxB.addActionListener((ActionEvent event) -> {  
+            boolean state = checkboxB.isSelected();
+            if (state) {
+               B = 255;
+            }
+            else {
+               B = 0;
+            }
             dessiner();
         });
         
@@ -116,10 +126,11 @@ public class Fenetre extends JFrame
     
     private void dessiner(){
         // lance la fabrication de l'objet
-            FabriqueDessin fabriqueDessin = new FabriqueDessin(index, panelCentre, NomImage, couleur);
+            FabriqueDessin fabriqueDessin = new FabriqueDessin(index, panelCentre, NomImage, R, V, B);
             fabriqueDessin.getDessin();
             // mise à jour des labels
             labelHaut.setText(fabriqueDessin.getNomImage());
+            labelHaut.setForeground(new Color(R, V, B));       
             labelBas.setText ("Image " + index);
     }
 }
