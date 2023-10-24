@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class Livre implements Dessin {
     
-    private final String nomDeLImage ="CARTABLE";
+    private final String nomDeLImage ="LIVRE";
     private JPanel panelCentre;
     private int R, V, B;
     

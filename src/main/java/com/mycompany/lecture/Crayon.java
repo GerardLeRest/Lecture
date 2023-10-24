@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 
 public class Crayon implements Dessin {
     
-    private final String nomDeLImage ="CARTABLE";
+    private final String nomDeLImage ="CRAYON";
     private JPanel panelCentre;
     private int R, V, B;
     
