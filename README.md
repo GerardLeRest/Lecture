@@ -8,3 +8,4 @@
 7ème version: arrangements graphiques
 8ème version: remplacement des boutons radios par des cases à cocher
 9ème version: résolution du bug "Cartable toujours affiché"
+10ème version: suppression des fichiers CouleurObjet.java et CouleurDessin.java
